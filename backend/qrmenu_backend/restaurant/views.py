@@ -2,17 +2,31 @@ from rest_framework import generics
 from .models import Restaurant, Category, MenuItem
 from .serializers import RestaurantSerializer, CategorySerializer, MenuItemSerializer
 
-# List all restaurants
-class RestaurantListView(generics.ListAPIView):
+# ---------- Restaurant CRUD ----------
+class RestaurantListCreateView(generics.ListCreateAPIView):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
 
-# List all categories
-class CategoryListView(generics.ListAPIView):
+class RestaurantRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
+
+
+# ---------- Category CRUD ----------
+class CategoryListCreateView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-# List all menu items
-class MenuItemListView(generics.ListAPIView):
+class CategoryRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+# ---------- MenuItem CRUD ----------
+class MenuItemListCreateView(generics.ListCreateAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+
+class MenuItemRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer

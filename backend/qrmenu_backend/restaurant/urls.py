@@ -1,8 +1,20 @@
 from django.urls import path
-from .views import RestaurantListView, CategoryListView, MenuItemListView
+from .views import (
+    RestaurantListCreateView, RestaurantRetrieveUpdateDeleteView,
+    CategoryListCreateView, CategoryRetrieveUpdateDeleteView,
+    MenuItemListCreateView, MenuItemRetrieveUpdateDeleteView
+)
 
 urlpatterns = [
-    path('restaurants/', RestaurantListView.as_view(), name='restaurant-list'),
-    path('categories/', CategoryListView.as_view(), name='category-list'),
-    path('menu-items/', MenuItemListView.as_view(), name='menu-item-list'),
+    # Restaurants
+    path('restaurants/', RestaurantListCreateView.as_view(), name='restaurant-list-create'),
+    path('restaurants/<int:pk>/', RestaurantRetrieveUpdateDeleteView.as_view(), name='restaurant-detail'),
+
+    # Categories
+    path('categories/', CategoryListCreateView.as_view(), name='category-list-create'),
+    path('categories/<int:pk>/', CategoryRetrieveUpdateDeleteView.as_view(), name='category-detail'),
+
+    # Menu Items
+    path('menu-items/', MenuItemListCreateView.as_view(), name='menuitem-list-create'),
+    path('menu-items/<int:pk>/', MenuItemRetrieveUpdateDeleteView.as_view(), name='menuitem-detail'),
 ]
