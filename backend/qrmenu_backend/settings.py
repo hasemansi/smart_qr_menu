@@ -48,7 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'restaurant',
     'rest_framework',
+    'corsheaders',       # CORS
+    'django_filters',    # DRF Filters
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,6 +62,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')  # at the very top
+
+# Allow all origins for development (or specify your React URL in production)
+CORS_ALLOW_ALL_ORIGINS = True
+
+# DRF Search & Filter Backend
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter'
+    ]
+}
 
 ROOT_URLCONF = 'qrmenu_backend.urls'
 
